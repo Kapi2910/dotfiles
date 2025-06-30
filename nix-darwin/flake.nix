@@ -17,16 +17,20 @@
       flake = false;
     };
     homebrew-bundle = {
-      url = "github:homebrew/homebrew-bundle";
+	url = "github:homebrew/homebrew-bundle";
       flake = false;
     };
-    homebrew-services = {
-      url = "github:homebrew/homebrew-services";
+    homebrew-tap = {
+      url = "github:nikitabobko/homebrew-tap";
+      flake = false;
+    };
+    felixkratz-formulae = {
+      url = "github:FelixKratz/homebrew-formulae";
       flake = false;
     };
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, nix-homebrew, homebrew-core, homebrew-cask, homebrew-bundle, homebrew-services, ... }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, mac-app-util, nix-homebrew, homebrew-core, homebrew-cask, ... }:
   let
     configuration = { pkgs, ... }: {
       system.primaryUser = "kapi";
@@ -39,7 +43,6 @@
         pkgs.wget
         pkgs.neofetch
         pkgs.git
-        pkgs.rectangle
       ];
 
       nixpkgs.config.allowBroken = true;
@@ -50,6 +53,8 @@
         # Uncomment to install cli packages from Homebrew.
         brews = [
            "mas"
+	   "stow"
+	  "borders" # JankyBorders
         ];
 
         # Uncomment to install cask packages from Homebrew.
@@ -61,6 +66,7 @@
 	  "thunderbird"
 	  "discord"
 	  "obsidian"
+	  "aerospace" # Tiling Manager
         ];
 
         # Uncomment to install app store apps using mas-cli.
@@ -139,8 +145,9 @@
             taps = {
               "homebrew/homebrew-core" = homebrew-core;
               "homebrew/homebrew-cask" = homebrew-cask;
-              "homebrew/homebrew-bundle" = homebrew-bundle;
-              "homebrew/homebrew-services" = homebrew-services;
+	      "homebrew/homebrew-bundle" = inputs.homebrew-bundle;
+	      "nikitabobko/homebrew-tap" = inputs.homebrew-tap;
+	      "FelixKratz/homebrew-formulae" = inputs.felixkratz-formulae;
             };
 
             # Optional: Enable fully-declarative tap management
@@ -149,7 +156,7 @@
             mutableTaps = false;
 
             # Automatically migrate existing Homebrew installations
-            # autoMigrate = true;
+	    autoMigrate = true;
           };
         }
       ];
