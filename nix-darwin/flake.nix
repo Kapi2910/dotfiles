@@ -55,6 +55,7 @@
            "mas"
 	   "stow"
 	  "borders" # JankyBorders
+	  "sketchybar"
         ];
 
         # Uncomment to install cask packages from Homebrew.
