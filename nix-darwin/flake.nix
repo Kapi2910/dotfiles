@@ -54,6 +54,7 @@
         brews = [
            "mas"
 	   "stow"
+	   "htop"
 	  "borders" # JankyBorders
 	  "sketchybar"
         ];
@@ -86,6 +87,10 @@
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
+	    #List Fonts we want to install
+      fonts.packages = [
+        pkgs.nerd-fonts.jetbrains-mono
+      ]; 
       # Enable alternative shell support in nix-darwin.
       # programs.fish.enable = true;
       programs.zsh.enable = true;
