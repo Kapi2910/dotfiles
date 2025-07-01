@@ -53,10 +53,11 @@
         # Uncomment to install cli packages from Homebrew.
         brews = [
            "mas"
-	   "stow"
+	    "stow"
 	   "htop"
 	  "borders" # JankyBorders
 	  "sketchybar"
+    "nvm"
         ];
 
         # Uncomment to install cask packages from Homebrew.
@@ -69,6 +70,8 @@
 	  "discord"
 	  "obsidian"
 	  "aerospace" # Tiling Manager
+    "font-sketchybar-app-font"
+    "font-sf-pro"
         ];
 
         # Uncomment to install app store apps using mas-cli.
