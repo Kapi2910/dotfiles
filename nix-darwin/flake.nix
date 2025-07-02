@@ -58,6 +58,7 @@
 	  "borders" # JankyBorders
 	  "sketchybar"
     "nvm"
+    "tree-sitter"
         ];
 
         # Uncomment to install cask packages from Homebrew.
