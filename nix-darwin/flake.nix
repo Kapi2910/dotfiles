@@ -67,7 +67,6 @@
           "logi-options+"
 	  "firefox"
 	  "warp"
-	  "thunderbird"
 	  "discord"
 	  "obsidian"
 	  "aerospace" # Tiling Manager
