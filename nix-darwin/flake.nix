@@ -70,6 +70,7 @@
 	  "discord"
 	  "obsidian"
 	  "aerospace" # Tiling Manager
+      "zoom"
     "font-sketchybar-app-font"
     "font-sf-pro"
         ];
