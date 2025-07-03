@@ -116,7 +116,6 @@
  	dock.persistent-apps = [
 		"/Applications/Warp.App"
 		"/Applications/Firefox.App"
-		"/Applications/Thunderbird.App"
 	];
         NSGlobalDomain.AppleICUForce24HourTime = true;
         NSGlobalDomain.KeyRepeat = 2;
