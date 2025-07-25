@@ -57,8 +57,10 @@
 	   "htop"
 	  "borders" # JankyBorders
 	  "sketchybar"
+      "ripgrep"
     "nvm"
     "tree-sitter"
+    "fzf"
         ];
 
         # Uncomment to install cask packages from Homebrew.
@@ -71,6 +73,7 @@
 	  "obsidian"
 	  "aerospace" # Tiling Manager
       "zoom"
+      "spotify"
     "font-sketchybar-app-font"
     "font-sf-pro"
         ];
