@@ -61,6 +61,13 @@
     "nvm"
     "tree-sitter"
     "fzf"
+    "libpng"
+    "automake"
+    "autoconf"
+    "cmake" 
+    "zlib" 
+    "pkg-config" 
+    "zstd"
         ];
 
         # Uncomment to install cask packages from Homebrew.
@@ -76,6 +83,7 @@
       "spotify"
     "font-sketchybar-app-font"
     "font-sf-pro"
+    "gcc-arm-embedded"
         ];
 
         # Uncomment to install app store apps using mas-cli.
