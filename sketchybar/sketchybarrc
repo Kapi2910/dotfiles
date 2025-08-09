@@ -47,7 +47,7 @@ defaults=(
   updates=when_shown
   icon.font="$FONT:Regular:14.0"
   icon.color=$ICON_COLOR
-  icon.padding_left=$PADDINS
+  icon.padding_left=$PADDINGS
   icon.padding_right=$PADDINGS
   label.font="$FONT:Semibold:13.0"
   label.color=$LABEL_COLOR
@@ -76,9 +76,10 @@ sketchybar --default "${defaults[@]}"
 
 # Left
 # source "$ITEM_DIR/apple.sh"
+source "$ITEM_DIR/front_app.sh"
+source "$ITEM_DIR/separator.sh"
 source "$ITEM_DIR/spaces.sh"
 source "$ITEM_DIR/music.sh"
-# source "$ITEM_DIR/front_app.sh"
 #source "$ITEM_DIR/yabai.sh"
 
 # Center

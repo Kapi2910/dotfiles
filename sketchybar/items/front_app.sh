@@ -1,7 +1,8 @@
 #!/bin/sh
 
 front_app=(
-  label.font="$FONT:Black:12.0"
+  label.font="JetBrainsMono Nerd Font Mono:Regular:12.0"
+  icon.font="sketchybar-app-font:Regular:22.0"
   icon.background.drawing=on
   display=active
   script="$PLUGIN_DIR/front_app.sh"
