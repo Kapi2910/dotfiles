@@ -195,6 +195,9 @@ automatically-unhide-macos-hidden-apps = false
 #if.window-title-regex-substring = '^BIG-IP'
 #run = ['layout floating']
 
+[[on-window-detected]]
+if.app-name-regex-substring= "setting"
+run = ['layout floating', 'move-node-to-workspace 1']
 
 [[on-window-detected]]
 if.app-name-regex-substring = 'warp'
