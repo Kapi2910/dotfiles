@@ -42,7 +42,6 @@
         pkgs.neovim
         pkgs.wget
         pkgs.neofetch
-        pkgs.git
       ];
 
       nixpkgs.config.allowBroken = true;
@@ -67,6 +66,7 @@
     "cmake" 
     "zlib" 
     "pkg-config" 
+    "git-gui"
     "zstd"
         ];
 
