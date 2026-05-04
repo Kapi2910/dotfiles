@@ -41,7 +41,7 @@
         pkgs.git
         pkgs.neovim
         pkgs.wget
-        pkgs.neofetch
+        pkgs.fastfetch
       ];
 
       nixpkgs.config.allowBroken = true;
@@ -68,6 +68,9 @@
     "pkg-config" 
     "git-gui"
     "zstd"
+    "lua"
+    "switchaudio-osx"
+    "nowplaying-cli"
         ];
 
         # Uncomment to install cask packages from Homebrew.
@@ -84,6 +87,9 @@
     "font-sketchybar-app-font"
     "font-sf-pro"
     "gcc-arm-embedded"
+    "sf-symbols"
+    "font-sf-mono"
+    "font-sf-pro"
         ];
 
         # Uncomment to install app store apps using mas-cli.
