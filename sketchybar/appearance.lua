@@ -147,7 +147,7 @@ M.styles = {
 			padding_right = 2,
 		},
 		label = {
-			color = M.colors.active.mauve,
+			color = M.colors.active.red,
 			highlight_color = M.colors.active.peach,
 			font = "sketchybar-app-font:Regular:16.0",
 			padding_left = 2,

@@ -1,11 +1,16 @@
 local icons = require("icons")
 local colors = require("colors")
 
+local whitelist = {
+  ["Spotify"] = true,
+  ["Music"]   = true,
+}
+
 local media_cover = sbar.add("item", {
   position = "right",
   background = {
-    color        = colors.transparent,
-    image        = { scale = 0.85 },
+    color         = colors.transparent,
+    image         = { scale = 0.85 },
     corner_radius = 6,
   },
   label   = { drawing = false },
@@ -13,7 +18,13 @@ local media_cover = sbar.add("item", {
   drawing = false,
   popup = {
     align      = "center",
-    horizontal = true,
+    horizontal = false,
+    background = {
+      color         = colors.bg1,
+      border_color  = colors.bg2,
+      border_width  = 2,
+      corner_radius = 12,
+    },
   }
 })
 
@@ -47,28 +58,68 @@ local media_title = sbar.add("item", {
   },
 })
 
-sbar.add("item", {
+-- ── Popup items ─────────────────────────────────────────────────────────────
+
+-- Large artwork image at the top of the popup
+local popup_artwork = sbar.add("item", {
+  position = "popup." .. media_cover.name,
+  icon     = { drawing = false },
+  label    = { drawing = false },
+  background = {
+    color         = colors.transparent,
+    image         = { scale = 0.5 },
+    corner_radius = 10,
+    height        = 200,
+    drawing       = true,
+  },
+  padding_left  = 8,
+  padding_right = 8,
+})
+
+-- Controls row — previous, play/pause, next
+local popup_prev = sbar.add("item", {
   position     = "popup." .. media_cover.name,
-  icon         = { string = icons.media.back },
+  icon         = { string = icons.media.back, font = { size = 16 }, color = colors.white },
   label        = { drawing = false },
+  padding_left = 12,
+  padding_right = 12,
   click_script = "nowplaying-cli previous",
 })
 
-sbar.add("item", {
-  position     = "popup." .. media_cover.name,
-  icon         = { string = icons.media.play_pause },
-  label        = { drawing = false },
-  click_script = "nowplaying-cli togglePlayPause",
+local popup_play = sbar.add("item", {
+  position      = "popup." .. media_cover.name,
+  icon          = { string = icons.media.play_pause, font = { size = 20 }, color = colors.white },
+  label         = { drawing = false },
+  padding_left  = 12,
+  padding_right = 12,
+  click_script  = "nowplaying-cli togglePlayPause",
 })
 
-sbar.add("item", {
-  position     = "popup." .. media_cover.name,
-  icon         = { string = icons.media.forward },
-  label        = { drawing = false },
-  click_script = "nowplaying-cli next",
+local popup_next = sbar.add("item", {
+  position      = "popup." .. media_cover.name,
+  icon          = { string = icons.media.forward, font = { size = 16 }, color = colors.white },
+  label         = { drawing = false },
+  padding_left  = 12,
+  padding_right = 12,
+  click_script  = "nowplaying-cli next",
 })
+
+-- Bracket the three controls so they sit on one horizontal line
+sbar.add("bracket", "media.controls.bracket",
+  { "media.popup.prev", "media.popup.play", "media.popup.next" },
+  {
+    background = {
+      color         = colors.bg2,
+      corner_radius = 10,
+      height        = 36,
+      drawing       = true,
+    },
+  }
+)
+-- ── Logic ────────────────────────────────────────────────────────────────────
 
 local interrupt = 0
+
 local function animate_detail(detail)
   if not detail then interrupt = interrupt - 1 end
   if interrupt > 0 and not detail then return end
@@ -78,11 +129,25 @@ local function animate_detail(detail)
   end)
 end
 
+local function update_artwork()
+  sbar.exec(
+    "nowplaying-cli get artworkData | tr -d '\n' | base64 -d > /tmp/sketchybar_artwork.jpg",
+    function()
+      media_cover:set({
+        background = { image = { string = "/tmp/sketchybar_artwork.jpg", scale = 0.05 } },
+      })
+      popup_artwork:set({
+        background = { image = { string = "/tmp/sketchybar_artwork.jpg", scale = 0.65 } },
+      })
+    end
+  )
+end
+
 -- Poll nowplaying-cli every 5 seconds
 local poller = sbar.add("item", {
   drawing     = false,
   updates     = true,
-  update_freq = 3,
+  update_freq = 5,
 })
 
 poller:subscribe("routine", function()
@@ -104,17 +169,8 @@ poller:subscribe("routine", function()
         media_artist:set({ drawing = true, label = { string = artist } })
         media_title:set({ drawing = true, label = { string = title } })
 
-        sbar.exec(
-          "nowplaying-cli get artworkData | tr -d '\n' | base64 -d > /tmp/sketchybar_artwork.jpg",
-          function()
-            media_cover:set({
-              drawing = true,
-              background = {
-                image = { string = "/tmp/sketchybar_artwork.jpg", scale = 0.05 },
-              },
-            })
-          end
-        )
+        media_cover:set({ drawing = true })
+        update_artwork()
 
         animate_detail(true)
         interrupt = interrupt + 1
