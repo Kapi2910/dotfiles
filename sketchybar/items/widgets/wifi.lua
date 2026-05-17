@@ -1,5 +1,5 @@
 local icons = require("icons")
-local colors = require("colors")
+local colors = require("appearance").colors
 local settings = require("settings")
 
 -- Execute the event provider binary which provides the event "network_update"

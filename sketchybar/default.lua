@@ -1,5 +1,5 @@
 local settings = require("settings")
-local colors = require("colors")
+local colors = require("appearance").colors
 
 -- Equivalent to the --default domain
 sbar.default({
@@ -13,7 +13,7 @@ sbar.default({
     color = colors.white,
     padding_left = settings.paddings,
     padding_right = settings.paddings,
-    background = { image = { corner_radius = 9 } },
+   -- background = { image = { corner_radius = 9 } },
   },
   label = {
     font = {

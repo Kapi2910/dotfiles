@@ -1,4 +1,4 @@
-local colors = require("colors")
+local colors = require("appearance").colors
 local icons = require("icons")
 local settings = require("settings")
 
@@ -14,7 +14,7 @@ local apple = sbar.add("item", {
   },
   label = { drawing = false },
   background = {
-    color = colors.bg2,
+    color = colors.bg1,
     border_color = colors.black,
     border_width = 1
   },

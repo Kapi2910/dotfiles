@@ -1,5 +1,5 @@
 local icons = require("icons")
-local colors = require("colors")
+local colors = require("appearance").colors
 local settings = require("settings")
 
 local battery = sbar.add("item", "widgets.battery", {

@@ -132,7 +132,7 @@ M.styles = {
 	-- Styles for the workspace items created in items/spaces.lua
 	workspace = {
 		background = {
-			color = M.colors.accent_bright,
+			color = M.colors.bg1,
 			drawing = true,
 		},
 		icon = {
